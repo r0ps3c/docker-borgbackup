@@ -18,4 +18,4 @@ RUN \
     	rm -fr /var/cache/apk/* /wheels /.cache
 
 WORKDIR /
-ENTRYPOINT ["/usr/local/bin/borg"]
+ENTRYPOINT ["/usr/bin/borg"]
