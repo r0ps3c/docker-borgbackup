@@ -9,11 +9,11 @@ RUN \
 	pip3 install -r requirements.d/development.txt && \
 	pip3 wheel -w /wheels .
 
-FROM python:alpine
+FROM alpine
 COPY --from=builder /wheels /wheels
 
 RUN \
-	apk --no-cache add openssh-client libacl && \
+	apk --no-cache add python3 openssh-client libacl && \
     	pip3 install -f /wheels borgbackup && \
     	rm -fr /var/cache/apk/* /wheels /.cache
 
