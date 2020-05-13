@@ -9,7 +9,7 @@ RUN \
 	pip3 install -r requirements.d/development.txt && \
 	pip3 wheel -w /wheels .
 
-FROM alpine
+FROM python:alpine
 COPY --from=builder /wheels /wheels
 
 RUN \
