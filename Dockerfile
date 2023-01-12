@@ -4,10 +4,10 @@ ENV PYTHONUNBUFFERED=1
 ARG BORGBACKUP_VER
 RUN \
 	apk --no-cache add build-base python3-dev acl-dev attr-dev openssl-dev linux-headers libffi-dev py3-pip pkgconfig && \
-	wget https://github.com/borgbackup/borg/releases/download/$BORGBACKUP_VER/borgbackup-$BORGBACKUP_VER.tar.gz && \
+	wget -q https://github.com/borgbackup/borg/releases/download/$BORGBACKUP_VER/borgbackup-$BORGBACKUP_VER.tar.gz && \
 	tar xf borgbackup-${BORGBACKUP_VER}.tar.gz && \
 	cd borgbackup-${BORGBACKUP_VER} && \
-	pip install -r requirements.d/development.txt && \
+	pip install -r requirements.d/development.lock.txt && \
 	pip install wheel && \
 	pip wheel -w /wheels .
 
