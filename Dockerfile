@@ -15,11 +15,10 @@ FROM alpine
 COPY --from=build /wheels /wheels
 ARG BORGBACKUP_VER # Redeclare to make it available in this stage
 RUN \
-	ls -l /wheels && \
 	apk --no-cache add python3 py3-pip openssh-client acl-libs py3-packaging py3-msgpack && \
-    pip install --break-system-packages --find-links /wheels borgbackup==$BORGBACKUP_VER  && \
+	pip install --break-system-packages --find-links /wheels borgbackup==$BORGBACKUP_VER  && \
 	apk del py3-pip py3-pip-pyc && \
-    rm -fr /var/cache/apk/* /wheels /.cache
+	rm -fr /var/cache/apk/* /wheels /.cache
 
 WORKDIR /
 ENTRYPOINT ["/usr/bin/borg"]
