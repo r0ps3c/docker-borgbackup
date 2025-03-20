@@ -28,4 +28,4 @@ jobs:
 
       - name: Test
         run: |
-          docker run --rm -e BORG_PASSPHRASE="" ${{ github.repository }}:${{github.sha}}-test init --encryption=keyfile /tmp/borgtest
+          docker run --rm -v $PWD/tests:/tests --entrypoint /tests/run.sh ${{ github.repository }}:${{github.sha}}-test 
