@@ -1,9 +1,9 @@
-ARG BORGBACKUP_VER=1.2.7 # set default value
+ARG BORGBACKUP_VER=1.4.0 # set default value
 FROM alpine AS build
 ARG BORGBACKUP_VER # Redeclare to make it available
 ENV PYTHONUNBUFFERED=1
 RUN \
-	apk --no-cache add build-base python3-dev acl-dev attr-dev openssl-dev linux-headers libffi-dev py3-pip pkgconfig py3-wheel py3-packaging py3-msgpack && \
+	apk --no-cache add build-base python3-dev acl-dev attr-dev openssl-dev linux-headers libffi-dev py3-pip pkgconfig py3-wheel py3-packaging py3-msgpack lz4-dev zstd-dev xxhash-dev && \
 	wget -q https://github.com/borgbackup/borg/releases/download/$BORGBACKUP_VER/borgbackup-$BORGBACKUP_VER.tar.gz && \
 	tar xf borgbackup-${BORGBACKUP_VER}.tar.gz && \
 	cd borgbackup-${BORGBACKUP_VER} && \
